@@ -23,4 +23,15 @@ flutter:
     
     - Assets/Image/Logo.svg
     - Assets/Image/Welcome.png
+    - Assets/Image/carrot.svg
+    -
+  Fonts:
+      - family: Poppins
+        fonts:
+          - asset: Assets/Fonts/Poppins-Regular.ttf
+            weight: 400
+          - asset: Assets/Fonts/Poppins-Medium.ttf
+            weight: 500
+          - asset: Assets/Fonts/Poppins-SemiBold.ttf
+            weight: 600
 

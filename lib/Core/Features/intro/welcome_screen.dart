@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_13/Core/Constant/app_image.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_application_13/Core/Style/Colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -10,28 +11,57 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Image.network(
-            'https://image2url.com/r2/default/images/1770648905053-1f6acd83-3720-43cc-8781-59fd000490d1.png',
+          Image.asset(
+            AppImage.welcome,
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
           ),
           Positioned(
-            bottom: 75,
+            bottom: 100,
             left: 0,
             right: 0,
-            top: 0,
+            top: 500,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.network(
-                  'https://image2url.com/r2/default/images/1770650764562-a995d1ce-3dbe-4b25-abf3-d569e42f911e.png',
-                ),
-                SizedBox(height: 35),
+                SvgPicture.asset(AppImage.carrot, color: Colors.white),
+                const SizedBox(height: 35),
                 Text(
-                  "Welcome \n t Green market",
+                  "Welcome \n to our store",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontFamily: "Poppins",
+                    color: AppColors.background,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 15),
+                Text(
+                  "get your groceries in as fast as one hour",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Poppins",
+                    color: AppColors.background,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      minimumSize: const Size(double.infinity, 60),
+                    ),
+                    onPressed: () {},
+                    child: const Text("Get Started"),
+                  ),
                 ),
               ],
             ),
