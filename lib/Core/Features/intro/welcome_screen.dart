@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_13/Core/Constant/app_image.dart';
+import 'package:flutter_application_13/Core/Features/aut/page/login_screen.dart'
+    show LoginScreen;
 import 'package:flutter_application_13/Core/Style/Colors.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -59,8 +61,16 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       minimumSize: const Size(double.infinity, 60),
                     ),
-                    onPressed: () {},
-                    child: const Text("Get Started"),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
+                    },
+                    child: Text(
+                      "Get Started",
+                      style: TextStyle(color: AppColors.background),
+                    ),
                   ),
                 ),
               ],

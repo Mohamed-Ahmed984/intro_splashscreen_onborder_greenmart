@@ -24,8 +24,8 @@ flutter:
     - Assets/Image/Logo.svg
     - Assets/Image/Welcome.png
     - Assets/Image/carrot.svg
-    -
-  Fonts:
+    
+  fonts:
       - family: Poppins
         fonts:
           - asset: Assets/Fonts/Poppins-Regular.ttf
