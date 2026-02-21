@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_13/Core/Constant/app_image.dart';
 import 'package:flutter_application_13/Core/Features/intro/welcome_screen.dart';
+import 'package:flutter_application_13/Core/Features/main/main_app_screen.dart';
 import 'package:flutter_application_13/Core/Style/Colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -20,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 6), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+        MaterialPageRoute(builder: (context) => const MainAppScreen()),
       );
     });
     // TODO: implement initState

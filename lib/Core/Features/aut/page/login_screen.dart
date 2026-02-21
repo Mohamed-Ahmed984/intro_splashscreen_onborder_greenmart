@@ -3,137 +3,138 @@ import 'package:flutter_application_13/Core/Constant/app_image.dart';
 import 'package:flutter_application_13/Core/Style/Colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
+        child: Form(
+          key: _formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 60),
+
               Align(
                 alignment: Alignment.center,
                 child: SvgPicture.asset(AppImage.carrot),
               ),
+
               const SizedBox(height: 40),
-              Text(
-                "Login",
-                style: TextStyle(
-                  fontSize: 26,
-                  fontFamily: "Poppins",
-                  color: AppColors.blackcolor,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                "Enter your email and password",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontFamily: "Poppins",
-                  color: AppColors.greycolor,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              const SizedBox(height: 40),
-              Text(
-                "Email",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: AppColors.greycolor,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+
+              const Text("Login"),
+
+              const SizedBox(height: 20),
+
+              const Text("Email"),
+
               TextFormField(
                 decoration: InputDecoration(
                   fillColor: AppColors.accentColor,
                   filled: true,
                   hintText: "Enter your email",
-                  hintStyle: TextStyle(
-                    fontSize: 14,
-                    color: AppColors.greycolor,
-                    fontWeight: FontWeight.w400,
-                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide.none,
                   ),
                 ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "enter a text";
+                  }
+
+                  if (!value.contains("@")) {
+                    return "email must contain @";
+                  }
+
+                  return null;
+                },
               ),
+
               const SizedBox(height: 20),
-              Text(
-                "Password",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: AppColors.greycolor,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              TextFormField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  fillColor: AppColors.accentColor,
-                  filled: true,
-                  suffixIcon: Icon(
-                    Icons.remove_red_eye,
-                    color: AppColors.greycolor,
-                  ),
-                  hintText: "••••••••",
-                  hintStyle: TextStyle(
-                    fontSize: 14,
-                    color: AppColors.greycolor,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                  onPressed: () {},
-                  child: const Text("Forget password?"),
-                ),
-              ),
+
+              const Text("Password"),
+
+              PasswordField(),
+
               const SizedBox(height: 24),
 
               SizedBox(
                 width: double.infinity,
                 height: 56,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      print("Valid");
+                    }
+                  },
                   child: const Text("Login"),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "dont have an account ",
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "sign up",
-                      style: TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class PasswordField extends StatefulWidget {
+  const PasswordField({super.key});
+
+  @override
+  State<PasswordField> createState() => _PasswordFieldState();
+}
+
+class _PasswordFieldState extends State<PasswordField> {
+  bool isHidden = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      obscureText: isHidden,
+      decoration: InputDecoration(
+        fillColor: AppColors.accentColor,
+        filled: true,
+        hintText: "••••••••",
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide.none,
+        ),
+        suffixIcon: IconButton(
+          icon: Icon(
+            isHidden ? Icons.remove_red_eye : Icons.visibility_off,
+            color: AppColors.greycolor,
+          ),
+          onPressed: () {
+            setState(() {
+              isHidden = !isHidden;
+            });
+          },
+        ),
+      ),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "enter a text";
+        }
+
+        if (value.length < 6) {
+          return "password must be at least 6 characters";
+        }
+
+        return null;
+      },
     );
   }
 }

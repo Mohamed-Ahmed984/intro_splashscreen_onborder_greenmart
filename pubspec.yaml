@@ -20,11 +20,15 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    
     - Assets/Image/Logo.svg
     - Assets/Image/Welcome.png
     - Assets/Image/carrot.svg
+    - Assets/Icons/store.svg
+    - Assets/Icons/heart.svg
+   
     
+    - Assets/Icons/Explore.svg
+    - Assets/Icons/Cart.svg
   fonts:
       - family: Poppins
         fonts:
